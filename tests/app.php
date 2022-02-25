@@ -8,6 +8,15 @@ require(__DIR__ . '/_bootstrap.php');
 
 class UserTest extends TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        User::deleteAll([
+            'username' => 'username',
+            'email' => 'email@email.ru',
+        ]);
+    }
+
     public function testValidateEmptyValues()
     {
         $user = new User();
@@ -52,7 +61,9 @@ foreach ($class->getMethods() as $method) {
     if (substr($method->name, 0, 4) == 'test') {
         echo 'Test ' . $method->class . '::' . $method->name . PHP_EOL . PHP_EOL;
         $test = new $method->class;
+        $test->setUp();
         $test->{$method->name}();
+        $test->tearDown();
         echo PHP_EOL;
     }
 }

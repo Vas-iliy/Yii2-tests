@@ -35,6 +35,16 @@ class UserTest extends TestCase
         ]);
         $this->assertTrue($user->validate(), 'correct model is valid');
     }
+
+    public function testSaveIntoDatabase()
+    {
+        $user = new User([
+            'username' => 'username',
+            'email' => 'email@email.ru'
+        ]);
+
+        $this->assertTrue($user->save(), 'model is saved');
+    }
 }
 
 $class = new \ReflectionClass('\tests\UserTest');

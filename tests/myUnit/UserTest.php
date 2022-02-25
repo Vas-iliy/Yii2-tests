@@ -1,15 +1,16 @@
 <?php
 
 
-namespace tests\unit;
+namespace myTests\unit;
 
 use app\models\User;
-use PHPUnit\Framework\TestCase;
+use tests\TestCase;
 
 class UserTest extends TestCase
 {
-    public function setUp(): void
+    public function setUp()
     {
+        parent::setUp();
         User::deleteAll();
         \Yii::$app->db->createCommand()->insert(User::tableName(), [
             'username' => 'user',
